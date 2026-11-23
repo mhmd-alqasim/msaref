@@ -1,14 +1,21 @@
+// ── delete_wallet_usecase.dart ────────────────────
 import 'package:dartz/dartz.dart';
 import 'package:msaref/core/error/failures.dart';
-import 'package:msaref/features/wallet/domain/entities/wallet_entity.dart';
+import 'package:msaref/core/usecases/usecase.dart';
 import 'package:msaref/features/wallet/domain/repositories/wallet_repositorie.dart';
 
-class DeleteWalletUseCase {
-  final WalletRepository repository;
+/// نعرّف Params خاص بالحذف لأنه يحتاج id فقط
+class DeleteWalletParams {
+  final String id;
+  const DeleteWalletParams(this.id);
+}
 
+class DeleteWalletUseCase extends UseCase<Unit, DeleteWalletParams> {
+  final WalletRepository repository;
   DeleteWalletUseCase(this.repository);
 
-  Future<Either<Failure, Unit>> call(WalletEntity wallet) async {
-    return await repository.deletWallet(wallet.id!);
+  @override
+  Future<Either<Failure, Unit>> call(DeleteWalletParams params) {
+    return repository.deleteWallet(params.id);
   }
 }

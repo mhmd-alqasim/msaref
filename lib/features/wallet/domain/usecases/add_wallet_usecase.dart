@@ -1,14 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:msaref/core/error/failures.dart';
+import 'package:msaref/core/usecases/usecase.dart';
 import 'package:msaref/features/wallet/domain/entities/wallet_entity.dart';
-import 'package:msaref/features/wallet/domain/repositories/wallet_repositorie.dart';
+import 'package:msaref/features/wallet/domain/repositories/wallet_repository.dart';
 
-class AddWalletUseCase {
+class AddWalletUseCase extends UseCase<Unit, WalletEntity> {
   final WalletRepository repository;
-
   AddWalletUseCase(this.repository);
 
-  Future<Either<Failure, Unit>> call(WalletEntity wallet) async {
-    return await repository.addWallet(wallet);
+  @override
+  Future<Either<Failure, Unit>> call(WalletEntity params) {
+    return repository.addWallet(params);
   }
 }

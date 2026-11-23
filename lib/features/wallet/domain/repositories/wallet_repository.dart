@@ -6,5 +6,5 @@ abstract class WalletRepository {
   Future<Either<Failure, List<WalletEntity>>> getWallets();
   Future<Either<Failure, Unit>> addWallet(WalletEntity wallet);
   Future<Either<Failure, Unit>> updateWallet(WalletEntity wallet);
-  Future<Either<Failure, Unit>> deletWallet(int id);
+  Future<Either<Failure, Unit>> deleteWallet(int id);
 }
