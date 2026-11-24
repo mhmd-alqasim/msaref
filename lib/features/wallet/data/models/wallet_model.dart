@@ -28,4 +28,27 @@ class WalletModel extends WalletEntity {
       updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updated_at'] as int),
     );
   }
+
+  //model --->map
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'balance': balance,
+      'currency': currency,
+      'created_at': createdAt.millisecondsSinceEpoch,
+      'updated_at': updatedAt.millisecondsSinceEpoch,
+    };
+  }
+
+  factory WalletModel.fromEntity(WalletEntity entity) {
+    return WalletModel(
+      id: entity.id,
+      name: entity.name,
+      balance: entity.balance,
+      currency: entity.currency,
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
+    );
+  }
 }
