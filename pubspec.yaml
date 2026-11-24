@@ -37,6 +37,8 @@ dependencies:
   dartz: ^0.10.1
   sqflite: ^2.4.5
   path: ^1.9.1
+  flutter_bloc: ^9.1.1
+  uuid: ^4.6.0
 
 dev_dependencies:
   flutter_test:
