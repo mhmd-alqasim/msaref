@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:msaref/core/usecases/usecase.dart';
+import 'package:msaref/core/utils/app_string.dart';
 import 'package:msaref/features/wallet/domain/entities/wallet_entity.dart';
 import 'package:msaref/features/wallet/domain/usecases/add_wallet_usecase.dart';
 import 'package:msaref/features/wallet/domain/usecases/delete_wallet_usecase.dart';
@@ -62,7 +63,7 @@ class WalletCubit extends Cubit<WalletState> {
     resulte.fold((failure) => emit(WalletError(message: failure.message)), (
       _,
     ) async {
-      emit(const WalletActionSuccess(message: 'تمت إضافة المحفظة بنجاح'));
+      emit(const WalletActionSuccess(message: AppStrings.walletAdded));
       await loadWallets();
     });
   }
@@ -74,7 +75,7 @@ class WalletCubit extends Cubit<WalletState> {
     result.fold((failure) => emit(WalletError(message: failure.message)), (
       _,
     ) async {
-      emit(const WalletActionSuccess(message: 'تم حذف المحفظة'));
+      emit(const WalletActionSuccess(message: AppStrings.walletDeleted));
       await loadWallets();
     });
   }
@@ -99,7 +100,7 @@ class WalletCubit extends Cubit<WalletState> {
     result.fold((failure) => emit(WalletError(message: failure.message)), (
       _,
     ) async {
-      emit(const WalletActionSuccess(message: 'تم تحديث المحفظة بنجاح'));
+      emit(const WalletActionSuccess(message: AppStrings.walletUpdated));
       await loadWallets();
     });
   }
