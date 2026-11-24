@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:msaref/core/error/exceptions.dart';
 import 'package:msaref/core/error/failures.dart';
 import 'package:msaref/features/wallet/data/datasources/wallet_local_datasource.dart';
@@ -58,26 +57,26 @@ class WalletRepositoryImp extends WalletRepository {
   }
 }
 
-// استدعاء addWallet:
-
-// Cubit
-//   ↓ WalletEntity
-// UseCase
-//   ↓ WalletEntity
-// Repository        ← يحول Entity → Model
-//   ↓ WalletModel              يلتقط CacheException
-// DataSource        ← يحول Model → Map
-//   ↓ Map
-// SQLite ✅
-
-// قراءة getWallets:
-
-// SQLite
-//   ↓ List<Map>
-// DataSource        ← يحول Map → WalletModel
-//   ↓ List<WalletModel>
-// Repository        ← Model هو Entity (ترث منه)
-//   ↓ Right(List<WalletEntity>)
-// UseCase
-//   ↓ Either<Failure, List<WalletEntity>>
-// Cubit
+// ① المستخدم يضغط "إضافة محفظة"
+//         ↓
+// ② Widget تستدعي:
+//    cubit.addWallet(name: 'محفظتي', balance: 500)
+//         ↓
+// ③ WalletCubit يبني Entity ويستدعي UseCase:
+//    addWalletUseCase(WalletEntity(...))
+//         ↓
+// ④ AddWalletUseCase يستدعي Repository:
+//    repository.addWallet(entity)
+//         ↓
+// ⑤ WalletRepositoryImpl يحول ويستدعي DataSource:
+//    Entity → Model
+//    dataSource.addWallet(model)
+//         ↓
+// ⑥ WalletLocalDataSourceImpl يحفظ في SQLite:
+//    Model → Map
+//    db.insert('wallets', map)
+//         ↓
+// ⑦ النتيجة ترجع عكسياً:
+//    void → Unit → Right(unit) → emit(WalletAdded)
+//         ↓
+// ⑧ Widget تتحدث تلقائياً ✅
