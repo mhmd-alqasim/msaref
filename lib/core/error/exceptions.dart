@@ -4,9 +4,9 @@
 // Exception = خطأ تقني (قاعدة البيانات فشلت، الشبكة انقطعت)
 // Failure   = خطأ نعرضه للمستخدم بشكل مفهوم
 
-class CasheExeption implements Exception {
+class CacheException implements Exception {
   final String message;
-  const CasheExeption({this.message = 'A database error occurred.'});
+  const CacheException({this.message = 'A database error occurred.'});
 }
 
 class DatabaseException implements Exception {
