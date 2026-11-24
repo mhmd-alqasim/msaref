@@ -2,7 +2,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:msaref/core/error/failures.dart';
 import 'package:msaref/core/usecases/usecase.dart';
-import 'package:msaref/features/wallet/domain/repositories/wallet_repositorie.dart';
+import 'package:msaref/features/wallet/domain/repositories/wallet_repository.dart';
 
 /// نعرّف Params خاص بالحذف لأنه يحتاج id فقط
 class DeleteWalletParams {
