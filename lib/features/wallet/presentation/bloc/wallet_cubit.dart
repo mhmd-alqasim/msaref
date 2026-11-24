@@ -13,6 +13,11 @@ import 'package:uuid/uuid.dart';
 // ملاحظات المعلم
 // Repository أو DataSource لا يعرفCubit
 // UseCases  فقط يتحدث مع
+// Entity = صندوق يحمل البيانات فقط
+//          لا يعرف كيف تُنشأ أو كيف تُحفظ
+
+// Cubit  = من يقرر ماذا يُنشأ ومتى
+//          هو من يولد UUID للبيانات الجديدة
 class WalletCubit extends Cubit<WalletState> {
   final GetWalletsUseCase _getWallets;
   final AddWalletUseCase _addWallet;
