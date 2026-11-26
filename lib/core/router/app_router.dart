@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:msaref/features/main/bloc/main_cubit.dart';
+import 'package:msaref/features/main/pages/main_page.dart';
 import 'package:msaref/features/onboarding/presentation/bloc/onboarding_cubit.dart';
 import 'package:msaref/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:msaref/features/splash/pages/splash_decider.dart';
+import 'package:msaref/features/wallet/presentation/bloc/wallet_cubit.dart';
+import 'package:msaref/features/wallet/presentation/pages/add_wallet_page.dart';
 import 'package:msaref/injection_container.dart' as di;
 
 class AppRouter {
@@ -32,6 +36,20 @@ class AppRouter {
           BlocProvider(
             create: (_) => di.sl<OnboardingCubit>(),
             child: OnboardingPage(),
+          ),
+        );
+      //Main page
+      case main:
+        return _buildRoute(
+          settings,
+          BlocProvider(create: (_) => di.sl<MainCubit>(), child: MainPage()),
+        );
+      case addWallet:
+        return _buildRoute(
+          settings,
+          BlocProvider(
+            create: (_) => di.sl<WalletCubit>(),
+            child: AddWalletPage(),
           ),
         );
 

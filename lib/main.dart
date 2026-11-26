@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: AppRouter.splash,
       onGenerateRoute: AppRouter.generateRoute,
       // SplashPage =  first page decides where we go.

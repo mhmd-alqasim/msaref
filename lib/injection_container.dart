@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:msaref/core/database/database_helper.dart';
+import 'package:msaref/features/main/bloc/main_cubit.dart';
 import 'package:msaref/features/onboarding/data/datasources/onboarding_local_datasoures.dart';
 import 'package:msaref/features/onboarding/data/repositories/onboarding_repository_imp.dart';
 import 'package:msaref/features/onboarding/domain/repositories/onboarding_repository.dart';
@@ -35,7 +36,7 @@ Future<void> initDependencies() async {
 
   sl.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
   _initOnboarding();
-
+  _initMain();
   _initWallet();
 }
 
@@ -81,6 +82,9 @@ void _initWallet() {
   );
 }
 
+void _initMain() {
+  sl.registerFactory(() => MainCubit());
+}
 //ملاحظاتي
 // من الأسفل للأعلى دائماً:
 // DatabaseHelper          ← لا يحتاج أحد
