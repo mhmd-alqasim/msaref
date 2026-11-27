@@ -93,6 +93,16 @@ class DatabaseHelper {
         created_at INTEGER NOT NULL
       )
     ''');
+    // وهيدا جدول الفئات يلي رح يعملا المستخدم اللعين
+    batch.execute('''
+    CREATE TABLE categories (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    icon INTEGER NOT NULL,
+    color_hex TEXT NOT NULL,
+    is_default INTEGER NOT NULL DEFAULT 0
+    )
+    ''');
 
     await batch.commit(noResult: true);
   }

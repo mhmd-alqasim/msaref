@@ -1,3 +1,5 @@
+import 'package:msaref/features/category/domain/usecases/delete_category_usecase.dart';
+
 class AppStrings {
   AppStrings._();
   //لانو خاص حطيت منع انشاء
@@ -28,4 +30,8 @@ class AppStrings {
   // ── Database ──────────────────────────────────────
   static const dbError = 'حدث خطأ في قاعدة البيانات';
   static const unknownError = 'حدث خطأ غير متوقع';
+
+  // ── Category ──────────────────────────────────────
+  static const addcategory = 'تم إضافة فئة ';
+  static const deleteCate = 'تم حذف فئة ';
 }

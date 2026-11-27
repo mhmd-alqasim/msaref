@@ -1,5 +1,15 @@
 import 'package:get_it/get_it.dart';
 import 'package:msaref/core/database/database_helper.dart';
+import 'package:msaref/features/category/data/datasources/category_local_datasource.dart';
+import 'package:msaref/features/category/data/datasources/category_local_datasource_impl.dart';
+import 'package:msaref/features/category/data/repositories/category_repository_impl.dart';
+import 'package:msaref/features/category/domain/repositories/category_repository.dart';
+import 'package:msaref/features/category/domain/usecases/add_category_usecase.dart';
+import 'package:msaref/features/category/domain/usecases/delete_category_usecase.dart';
+import 'package:msaref/features/category/domain/usecases/get_categories_usecase.dart';
+import 'package:msaref/features/category/domain/usecases/init_default_categories_usecase.dart'
+    show InitDefaultCategoriesUseCase;
+import 'package:msaref/features/category/presentation/bloc/category_cubit.dart';
 import 'package:msaref/features/main/bloc/main_cubit.dart';
 import 'package:msaref/features/onboarding/data/datasources/onboarding_local_datasoures.dart';
 import 'package:msaref/features/onboarding/data/repositories/onboarding_repository_imp.dart';
@@ -38,6 +48,7 @@ Future<void> initDependencies() async {
   _initOnboarding();
   _initMain();
   _initWallet();
+  _initCategory();
 }
 
 void _initOnboarding() {
@@ -84,6 +95,29 @@ void _initWallet() {
 
 void _initMain() {
   sl.registerFactory(() => MainCubit());
+}
+
+void _initCategory() {
+  sl.registerLazySingleton<CategoryLocalDataSource>(
+    () => CategoryLocalDataSourceImpl(sl()),
+  );
+
+  sl.registerLazySingleton<CategoryRepository>(
+    () => CategoryRepositoryImpl(sl()),
+  );
+
+  sl.registerFactory(() => GetCategoriesUsecase(sl()));
+  sl.registerFactory(() => AddCategoryUseCase(sl()));
+  sl.registerFactory(() => DeleteCategoryUseCase(sl()));
+  sl.registerFactory(() => InitDefaultCategoriesUseCase(sl()));
+
+  sl.registerFactory(
+    () => CategoryCubit(
+      getCategories: sl(),
+      addCategory: sl(),
+      deleteCategory: sl(),
+    ),
+  );
 }
 //ملاحظاتي
 // من الأسفل للأعلى دائماً:
