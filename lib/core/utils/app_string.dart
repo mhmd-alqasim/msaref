@@ -1,4 +1,3 @@
-import 'package:msaref/features/category/domain/usecases/delete_category_usecase.dart';
 
 class AppStrings {
   AppStrings._();
