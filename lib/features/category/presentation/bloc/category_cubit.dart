@@ -6,7 +6,6 @@ import 'package:msaref/features/category/domain/entities/category_entity.dart';
 import 'package:msaref/features/category/domain/usecases/add_category_usecase.dart';
 import 'package:msaref/features/category/domain/usecases/delete_category_usecase.dart';
 import 'package:msaref/features/category/domain/usecases/get_categories_usecase.dart';
-import 'package:msaref/features/category/domain/usecases/init_default_categories_usecase.dart';
 import 'package:msaref/features/category/presentation/bloc/category_state.dart';
 import 'package:uuid/uuid.dart';
 
@@ -14,12 +13,10 @@ class CategoryCubit extends Cubit<CategoryState> {
   final GetCategoriesUsecase _getCategories;
   final AddCategoryUseCase _addCategory;
   final DeleteCategoryUseCase _deleteCategory;
-  // final InitDefaultCategoriesUseCase _initDefaults;
   CategoryCubit({
     required this._getCategories,
     required this._addCategory,
     required this._deleteCategory,
-    // required this._initDefaults,
   }) : super(const CategoryInitial());
 
   Future loadCategory() async {
